@@ -25,7 +25,7 @@ def book_to_dict(file_path):
 
 
 
-def get_shop_list_by_dishes(dishes, person = 1):
+def get_shop_list_by_dishes(dishes, person=1):
     cb_dict = book_to_dict('recipes.txt')
     list_of_ingredients = {}
     for dish in dishes:
