@@ -31,12 +31,15 @@ def get_shop_list_by_dishes(dishes, person=1):
     for dish in dishes:
         if dish in cb_dict.keys():
             for sdish in cb_dict[dish]:
-                amount = {}                
-                sdish['quantity'] = int(sdish['quantity']) * person
-                amount['measure'] = sdish['measure']
-                amount['quantity'] = sdish['quantity']
-                list_of_ingredients[sdish['ingredient_name']] = amount
+                amount = {}
+                if sdish['ingredient_name'] in list_of_ingredients:
+                    sdish['quantity'] = int(sdish['quantity']) * person
+                    list_of_ingredients[sdish['ingredient_name']]['quantity'] += sdish['quantity']
+                else:
+                    amount['measure'] = sdish['measure']
+                    amount['quantity'] = int(sdish['quantity']) * person
+                    list_of_ingredients[sdish['ingredient_name']] = amount
     pprint(list_of_ingredients)
 
 
-get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2)
+get_shop_list_by_dishes(['Омлет', 'Омлет'], 3)
